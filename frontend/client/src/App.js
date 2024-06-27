@@ -1,26 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Register from './components/Register';
+// Import other components as needed
 
-function App() {
-    const [message, setMessage] = useState('');
-
-    useEffect(() => {
-        axios.get('http://localhost:3000/')
-            .then(response => {
-                setMessage(response.data.message);
-            })
-            .catch(error => {
-                console.error('There was an error fetching the message!', error);
-            });
-    }, []);
-
-    return (
-        <div className="App">
-            <header className="App-header">
-                <h1>{message ? message : 'Loading...'}</h1>
-            </header>
-        </div>
-    );
-}
+const App = () => {
+  return (
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/register" element={<Register />} />
+          {/* Define other routes here */}
+        </Routes>
+      </div>
+    </Router>
+  );
+};
 
 export default App;
